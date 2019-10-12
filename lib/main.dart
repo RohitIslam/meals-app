@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import './pages/categories.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -9,9 +11,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Meals App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.lime,
       ),
-      home: MyHomePage(),
+      home: CategoriesPage(),
     );
   }
 }

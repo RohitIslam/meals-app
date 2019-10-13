@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './pages/categories.dart';
+import './pages/category_meals.dart';
 
 void main() => runApp(MyApp());
 
@@ -30,25 +31,9 @@ class MyApp extends StatelessWidget {
             ),
       ),
       home: CategoriesPage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Meals App'),
-      ),
-      body: Center(
-        child: Text('!!'),
-      ),
+      routes: {
+        '/category-meals': (ctx) => CategoryMealsPage(),
+      },
     );
   }
 }

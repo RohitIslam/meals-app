@@ -30,9 +30,10 @@ class MyApp extends StatelessWidget {
               ),
             ),
       ),
-      home: CategoriesPage(),
+      initialRoute: '/', // this route is the home route or default route
       routes: {
-        '/category-meals': (ctx) => CategoryMealsPage(),
+        '/': (ctx) => CategoriesPage(),
+        CategoryMealsPage.routeName: (ctx) => CategoryMealsPage(),
       },
     );
   }

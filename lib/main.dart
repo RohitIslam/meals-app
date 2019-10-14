@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Meals App',
       theme: ThemeData(
         primarySwatch: Colors.lime,
-        accentColor: Colors.blueGrey,
+        accentColor: Colors.orangeAccent,
         canvasColor: Color.fromRGBO(255, 254, 229, 1),
         fontFamily: 'Raleway',
         textTheme: ThemeData.light().textTheme.copyWith(
@@ -36,6 +36,9 @@ class MyApp extends StatelessWidget {
         '/': (ctx) => CategoriesPage(),
         CategoryMealsPage.routeName: (ctx) => CategoryMealsPage(),
         MealDetail.routeName: (ctx) => MealDetail(),
+      },
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(builder: (context) => CategoriesPage());
       },
     );
   }

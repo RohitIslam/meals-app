@@ -9,9 +9,9 @@ class TabsPage extends StatefulWidget {
 }
 
 class _TabsPageState extends State<TabsPage> {
-  final List<Widget> _pages = [
-    CategoriesPage(),
-    FavoriteCategoriesPage(),
+  final List<Map<String, Object>> _pages = [
+    {'page': CategoriesPage(), 'title': 'Categories'},
+    {'page': FavoriteCategoriesPage(), 'title': 'Favorite Categories'},
   ];
 
   int _selectedPageIndex = 0;
@@ -27,21 +27,26 @@ class _TabsPageState extends State<TabsPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'MEALS APP',
+          _pages[_selectedPageIndex]['title'],
         ),
       ),
-      body: _pages[_selectedPageIndex],
+      body: _pages[_selectedPageIndex]['page'],
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectTab,
-        backgroundColor: Theme.of(context).primaryColor,
+        unselectedItemColor: Colors.grey,
+        selectedItemColor: Theme.of(context).accentColor,
+        currentIndex: _selectedPageIndex,
+        type: BottomNavigationBarType.shifting,
         items: [
           BottomNavigationBarItem(
+            backgroundColor: Theme.of(context).primaryColor,
             icon: Icon(Icons.category),
             title: Text(
               'Categories',
             ),
           ),
           BottomNavigationBarItem(
+            backgroundColor: Theme.of(context).primaryColor,
             icon: Icon(Icons.star),
             title: Text(
               'Favorites',

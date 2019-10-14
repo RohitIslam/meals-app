@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import './pages/tabs.dart';
-import './pages/categories.dart';
 import './pages/category_meals.dart';
 import './pages/meal-detail.dart';
 
@@ -15,7 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Meals App',
       theme: ThemeData(
         primarySwatch: Colors.lime,
-        accentColor: Colors.orangeAccent,
+        accentColor: Colors.indigo,
         canvasColor: Color.fromRGBO(255, 254, 229, 1),
         fontFamily: 'Raleway',
         textTheme: ThemeData.light().textTheme.copyWith(

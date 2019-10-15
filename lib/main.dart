@@ -25,6 +25,7 @@ class _MyAppState extends State<MyApp> {
   };
 
   List<Meal> _availableMeals = DUMMY_MEALS;
+  List<Meal> _favoriteMeals = [];
 
   void _setFilter(Map<String, bool> filterData) {
     setState(() {
@@ -46,6 +47,31 @@ class _MyAppState extends State<MyApp> {
         return true;
       }).toList();
     });
+  }
+
+  void _toggleFavorite(String mealID) {
+    final existingIndex = _favoriteMeals.indexWhere(
+        (meal) => meal.id == mealID); // indexWhere() => returns index number;
+
+    if (existingIndex >= 0) {
+      setState(() {
+        _favoriteMeals.removeAt(
+            existingIndex); // removeAt() => Removes the object at position [index] from this list;
+      });
+    } else {
+      setState(() {
+        _favoriteMeals.add(
+          // add() => Adds [value] to the end of this list, extending the length by one;
+          DUMMY_MEALS.firstWhere((meal) => meal.id == mealID),
+          // firstWhere() => Returns the first element that satisfies the given predicate;
+        );
+      });
+    }
+  }
+
+  bool _isMealFavorite(String id) {
+    return _favoriteMeals.any((meal) => meal.id == id);
+    // any() => Checks whether any element of this iterable satisfies;
   }
 
   @override
@@ -73,14 +99,22 @@ class _MyAppState extends State<MyApp> {
       ),
       initialRoute: '/', // this route is the home route or default route
       routes: {
-        '/': (ctx) => TabsPage(),
+        '/': (ctx) => TabsPage(_favoriteMeals),
         CategoryMealsPage.routeName: (ctx) =>
             CategoryMealsPage(_availableMeals),
-        MealDetail.routeName: (ctx) => MealDetail(),
-        FiltersPage.routeName: (ctx) => FiltersPage(_filters, _setFilter),
+        MealDetail.routeName: (ctx) => MealDetail(
+              _toggleFavorite,
+              _isMealFavorite,
+            ),
+        FiltersPage.routeName: (ctx) => FiltersPage(
+              _filters,
+              _setFilter,
+            ),
       },
       onUnknownRoute: (settings) {
-        return MaterialPageRoute(builder: (context) => TabsPage());
+        return MaterialPageRoute(
+          builder: (context) => TabsPage(_favoriteMeals),
+        );
       },
     );
   }

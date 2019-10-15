@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import './pages/tabs.dart';
 import './pages/category_meals.dart';
 import './pages/meal-detail.dart';
+import './pages/filters.dart';
 
 void main() => runApp(MyApp());
 
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         '/': (ctx) => TabsPage(),
         CategoryMealsPage.routeName: (ctx) => CategoryMealsPage(),
         MealDetail.routeName: (ctx) => MealDetail(),
+        FiltersPage.routeName: (ctx) => FiltersPage(),
       },
       onUnknownRoute: (settings) {
         return MaterialPageRoute(builder: (context) => TabsPage());

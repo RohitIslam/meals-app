@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/meal_item.dart';
-// import '../models/Meal.dart';
-import '../dummy_data.dart';
+import '../models/Meal.dart';
 
 class CategoryMealsPage extends StatelessWidget {
   static const routeName = '/category-meals';
+  final List<Meal> availableMeals;
+
+  CategoryMealsPage(this.availableMeals);
+
   @override
   Widget build(BuildContext context) {
     final routeArgs =
@@ -13,7 +16,7 @@ class CategoryMealsPage extends StatelessWidget {
 
     final categoryId = routeArgs['id'];
     final categoryTitle = routeArgs['title'];
-    final categoryMeals = DUMMY_MEALS.where((meal) {
+    final categoryMeals = availableMeals.where((meal) {
       return meal.categories.contains(categoryId);
     }).toList();
 
